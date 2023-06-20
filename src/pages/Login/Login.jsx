@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -93,6 +94,7 @@ const Login = () => {
                                 <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
                             </div>
                             <p className='mt-5 text-center'><small>New Here? <Link to='/signup' className='text-orange-600'>Create an account</Link></small></p>
+                            <SocialLogin/>
                         </form>
                     </div>
                 </div>
