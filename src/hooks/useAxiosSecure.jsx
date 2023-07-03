@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import useAuth from './useAuth';
+import { useContext } from 'react';
+import { AuthContext } from '../providers/AuthProvider';
 
 
 const useAxiosSecure = () => {
-//   const { logOut } = useAuth(); 
+  const { logOut } = useContext(AuthContext); 
   const navigate = useNavigate(); 
 
   const axiosSecure = axios.create({
@@ -31,8 +32,7 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, [navigate, axiosSecure]);
-//   }, [logOut, navigate, axiosSecure]);
+  }, [logOut, navigate, axiosSecure]);
 
   return [axiosSecure];
 };
