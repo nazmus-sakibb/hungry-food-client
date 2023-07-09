@@ -10,7 +10,7 @@ const Payment = () => {
     return (
         <div className="w-full ml-20">
             <SectionTitle subHeading={"Please process"} heading={"Payment"} />
-            <h2 className="text-3xl mb-10">Pay with stripe</h2>
+            <h2 className="text-3xl mb-10">Pay with Stripe</h2>
             <Elements stripe={stripePromise}>
                 <CheckoutForm />
             </Elements>
