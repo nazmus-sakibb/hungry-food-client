@@ -58,7 +58,7 @@ const AdminHome = () => {
 
             </div>
         </div>
-    );
+    ); 
 };
 
 export default AdminHome;
