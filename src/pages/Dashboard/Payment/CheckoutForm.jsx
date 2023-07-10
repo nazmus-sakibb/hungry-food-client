@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+// import './CheckoutForm.module.css';
 
 
 const CheckoutForm = ({ price, cart }) => {
@@ -17,11 +18,13 @@ const CheckoutForm = ({ price, cart }) => {
 
 
     useEffect(() => {
-        axiosSecure.post('/create-payment-intent', { price })
-            .then(res => {
-                console.log(res.data.clientSecret);
-                setClientSecret(res.data.clientSecret);
-            })
+        if (price > 0) {
+            axiosSecure.post('/create-payment-intent', { price })
+                .then(res => {
+                    console.log(res.data.clientSecret);
+                    setClientSecret(res.data.clientSecret);
+                })
+        }
     }, [price, axiosSecure]);
 
 
@@ -82,14 +85,17 @@ const CheckoutForm = ({ price, cart }) => {
                 email: user?.email,
                 transactionId: paymentIntent.id,
                 price,
+                date: new Date(),
                 quantity: cart.length,
-                items: cart.map(item => item._id),
+                cartItems: cart.map(item => item._id),
+                menuItems: cart.map(item => item.menuItemId),
+                status: 'service pending',
                 itemNames: cart.map(item => item.name)
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {
                     console.log(res.data);
-                    if(res.data.insertedId){
+                    if (res.data.result.insertedId) {
                         // display confirm
                     }
                 })
@@ -99,7 +105,7 @@ const CheckoutForm = ({ price, cart }) => {
 
     return (
         <>
-            <form className="w-2/3" onSubmit={handleSubmit}>
+            <form className="w-2/3 m-0" onSubmit={handleSubmit}>
                 <CardElement
                     options={{
                         style: {
@@ -116,7 +122,7 @@ const CheckoutForm = ({ price, cart }) => {
                         },
                     }}
                 />
-                <button className="btn btn-primary btn-sm mt-8" type="submit" disabled={!stripe || !clientSecret || processing}>
+                <button className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
             </form>
