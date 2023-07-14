@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import Swal from "sweetalert2";
-import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const FoodCard = ({ item }) => {
     const { image, price, recipe, name, _id } = item;
@@ -21,7 +21,7 @@ const FoodCard = ({ item }) => {
                 price,
                 email: user.email
             }
-            fetch('http://localhost:5000/carts', {
+            fetch('https://hungry-food-server.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -52,7 +52,7 @@ const FoodCard = ({ item }) => {
                 confirmButtonText: 'Login now!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login', {state: {from: location}});
+                    navigate('/login', { state: { from: location } });
                 }
             })
         }

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const SocialLogin = () => {
@@ -18,7 +18,7 @@ const SocialLogin = () => {
                 console.log(loggedInUser);
 
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-                fetch('http://localhost:5000/users', {
+                fetch('https://hungry-food-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

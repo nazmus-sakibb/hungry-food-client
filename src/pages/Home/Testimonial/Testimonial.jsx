@@ -1,18 +1,18 @@
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Rating } from "@smastrom/react-rating";
+import '@smastrom/react-rating/style.css';
+import { useEffect, useState } from "react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useEffect, useState } from "react";
-import { Rating } from "@smastrom/react-rating";
-import '@smastrom/react-rating/style.css'
+import { Swiper, SwiperSlide } from "swiper/react";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 
 const Testimonial = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://hungry-food-server.vercel.app/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

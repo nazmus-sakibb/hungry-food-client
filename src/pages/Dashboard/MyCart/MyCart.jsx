@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
-import useCart from "../../../hooks/useCart";
 import { FaTrashAlt } from 'react-icons/fa';
-import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useCart from "../../../hooks/useCart";
 
 
 const MyCart = () => {
@@ -22,7 +22,7 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item._id}`, {
+                fetch(`https://hungry-food-server.vercel.app/carts/${item._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
