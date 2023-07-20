@@ -18,15 +18,7 @@ Hungry Food is a full-stack responsive web application that allows users to brow
 - Database: MongoDB
 - Payment Gateway: Stripe
 
-## Getting Started
 
-1. Clone the repository: `git clone https://github.com/nazmus-sakibb/hungry-food-client.git`
-2. Install frontend dependencies: `cd hungry-food-client && npm install`
-3. Clone the backend repository: `git clone https://github.com/nazmus-sakibb/hungry-food-server.git`
-4. Install backend dependencies: `cd hungry-food-server && npm install`
-5. Create a MongoDB database and update the backend configuration file.
-6. Add your Stripe API keys in the frontend configuration file.
-7. Start the frontend and backend servers: `npm start` for both.
 
 ## Live Site
 
